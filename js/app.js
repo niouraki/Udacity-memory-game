@@ -2,6 +2,8 @@
 let myCard = document.getElementsByClassName("card");
 let myCards = [...myCard];
 console.log(myCards);
+
+let deck = document.getElementsByClassName("deck");
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -22,6 +24,19 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+//Shuffles card and starts game
+document.onload = startGame();
+
+function startGame() {
+  shuffle(myCards);
+  for (const myCard of myCards) {
+    [].forEach(function(element) {
+      element.innerHTML("");
+      myCards.appendChild(deck);
+    });
+  }
 }
 
 /*
