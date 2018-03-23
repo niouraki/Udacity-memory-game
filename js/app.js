@@ -5,6 +5,8 @@ console.log(myCards);
 
 let deck = document.querySelector(".deck");
 
+let openList = [];
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -42,3 +44,12 @@ document.onload = startGame();
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+//Flips card clicked
+let openedCard = function() {
+  this.classList.add("open", "show");
+}
+
+for (let x = 0; x < myCards.length; x++) {
+  myCards[x].addEventListener("click", openedCard);
+}
