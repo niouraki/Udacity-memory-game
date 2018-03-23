@@ -3,13 +3,7 @@ let myCard = document.getElementsByClassName("card");
 let myCards = [...myCard];
 console.log(myCards);
 
-let deck = document.getElementsByClassName("deck");
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+let deck = document.querySelector(".deck");
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -26,19 +20,18 @@ function shuffle(array) {
     return array;
 }
 
-//Shuffles card and starts game
-document.onload = startGame();
-
+//Shuffles cards and starts game
 function startGame() {
-  shuffle(myCards);
-  for (const myCard of myCards) {
-    [].forEach(function(element) {
-      element.innerHTML("");
-      myCards.appendChild(deck);
+  let shuffled = shuffle(myCards);
+  for (let i = 0; i < shuffled.length; i++) {
+    deck.innerHTML = "";
+    [].forEach.call(shuffled, function(item) {
+      deck.appendChild(item);
     });
   }
 }
 
+document.onload = startGame();
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
