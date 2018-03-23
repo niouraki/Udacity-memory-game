@@ -1,5 +1,7 @@
-//Creates a list that holds all my closed cards
-
+//Creates a list that holds all my closed
+let myCard = document.getElementsByClassName("card");
+let myCards = [...myCard];
+console.log(myCards);
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
