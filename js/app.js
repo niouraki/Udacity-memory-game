@@ -5,7 +5,11 @@ console.log(myCards);
 
 let deck = document.querySelector(".deck");
 
+//Array for opened cards
 let openList = [];
+
+//Array for matched cards
+let matchList = [];
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -48,8 +52,26 @@ document.onload = startGame();
 //Flips card clicked
 let openedCard = function() {
   this.classList.add("open", "show");
+  openList.push(this);
+  console.log(openList);
+  if (openList.length === 2) {
+    if (openList[0].innerHTML === openList[1].innerHTML) {
+      matchedCards();
+      matchList.push(openList[0]);
+      matchList.push(openList[1]);
+      console.log(matchList);
+    }
+  }
 }
 
+function matchedCards() {
+  openList[0].classList.remove("open", "show");
+  openList[0].classList.add("match");
+  openList[1].classList.remove("open", "show");
+  openList[1].classList.add("match");
+}
+
+//FLips card on click
 for (let x = 0; x < myCards.length; x++) {
   myCards[x].addEventListener("click", openedCard);
 }
