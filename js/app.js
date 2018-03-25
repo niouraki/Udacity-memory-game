@@ -4,6 +4,7 @@ let myCards = [...myCard];
 console.log(myCards);
 
 let deck = document.querySelector(".deck");
+let restart = document.querySelector(".restart");
 
 //Array for opened cards
 let openList = [];
@@ -34,6 +35,7 @@ function startGame() {
     [].forEach.call(shuffled, function(item) {
       deck.appendChild(item);
     });
+    shuffled[i].classList.remove("open", "show", "match", "no_match");
   }
 }
 
@@ -90,3 +92,7 @@ function noMatch() {
 for (let x = 0; x < myCards.length; x++) {
   myCards[x].addEventListener("click", openedCard);
 }
+
+restart.addEventListener("click", function(){
+  startGame();
+});
