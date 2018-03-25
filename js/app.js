@@ -53,22 +53,37 @@ document.onload = startGame();
 let openedCard = function() {
   this.classList.add("open", "show");
   openList.push(this);
-  console.log(openList);
   if (openList.length === 2) {
     if (openList[0].innerHTML === openList[1].innerHTML) {
       matchedCards();
-      matchList.push(openList[0]);
-      matchList.push(openList[1]);
-      console.log(matchList);
+    }else if (openList[0].innerHTML != openList[1].innerHTML) {
+      noMatch();
     }
   }
 }
 
+//Specifies what to do when cards match
 function matchedCards() {
   openList[0].classList.remove("open", "show");
   openList[0].classList.add("match");
   openList[1].classList.remove("open", "show");
   openList[1].classList.add("match");
+  matchList.push(openList[0]);
+  matchList.push(openList[1]);
+  openList.splice(0, 2);
+}
+
+//Specifies what to do when cards don't match
+function noMatch() {
+  openList[0].classList.replace("show", "no_match");
+  openList[1].classList.replace("show", "no_match");
+  setTimeout(function() {
+      openList[0].classList.remove("open", "no_match");
+      openList[1].classList.remove("open", "no_match");
+  }, 1200);
+  setTimeout(function() {
+    openList.splice(0, 2);
+  }, 1300);
 }
 
 //FLips card on click
