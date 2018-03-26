@@ -42,6 +42,7 @@ function startGame() {
     });
     shuffled[i].classList.remove("open", "show", "match", "no_match");
   }
+  counting = 0;
 }
 
 document.onload = startGame();
@@ -103,4 +104,6 @@ for (let x = 0; x < myCards.length; x++) {
 //Restarts game when the restart icon is clicked
 restart.addEventListener("click", function(){
   startGame();
+  counting = 0;
+  moves.innerHTML = counting;
 });
