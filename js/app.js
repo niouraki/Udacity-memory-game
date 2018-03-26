@@ -9,6 +9,8 @@ let restart = document.querySelector(".restart");
 
 let moves = document.querySelector(".moves");
 
+let stars = document.querySelectorAll(".fa-star");
+
 let counting = 0;
 
 //Array for opened cards
@@ -94,7 +96,22 @@ function noMatch() {
 function countMoves() {
   counting++;
   moves.innerHTML = counting;
-}
+  
+//Removes stars after a number of moves
+  if (counting > 5 && counting < 10) {
+    for (let i = 0; i < 3; i++) {
+      if (i > 1) {
+        stars[i].style.visibility = "collapse";
+          }
+        }
+      }else if (counting > 10 ) {
+        for (i = 0; i < 3; i++) {
+          if (i > 0) {
+            stars[i].style.visibility = "collapse";
+          }
+        }
+      }
+    }
 
 //FLips card on click
 for (let x = 0; x < myCards.length; x++) {
