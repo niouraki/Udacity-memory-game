@@ -13,6 +13,8 @@ let stars = document.querySelectorAll(".fa-star");
 
 let counting = 0;
 
+let timer = document.querySelector("#timer");
+
 //Array for opened cards
 let openList = [];
 
@@ -21,17 +23,18 @@ let matchList = [];
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+  var currentIndex = array.length,
+    temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
 
-    return array;
+  return array;
 }
 
 //Shuffles cards and starts game
@@ -49,10 +52,6 @@ function startGame() {
 
 document.onload = startGame();
 
-// *  - if the list already has another card, check to see if the two cards match
- //*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- //*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
-
 
 //Flips card clicked
 let openedCard = function() {
@@ -62,7 +61,7 @@ let openedCard = function() {
     countMoves();
     if (openList[0].innerHTML === openList[1].innerHTML) {
       matchedCards();
-    }else if (openList[0].innerHTML != openList[1].innerHTML) {
+    } else if (openList[0].innerHTML != openList[1].innerHTML) {
       noMatch();
     }
   }
@@ -84,34 +83,55 @@ function noMatch() {
   openList[0].classList.replace("show", "no_match");
   openList[1].classList.replace("show", "no_match");
   setTimeout(function() {
-      openList[0].classList.remove("open", "no_match");
-      openList[1].classList.remove("open", "no_match");
+    openList[0].classList.remove("open", "no_match");
+    openList[1].classList.remove("open", "no_match");
   }, 1000);
   setTimeout(function() {
     openList.splice(0, 2);
   }, 1100);
 }
 
-//Counts player's moves
+//Counts player's moves and starts timer
 function countMoves() {
   counting++;
   moves.innerHTML = counting;
-  
+
+  if (counting === 1) {
+    startTimer();
+  }
+}
+
 //Removes stars after a number of moves
-  if (counting > 5 && counting < 10) {
-    for (let i = 0; i < 3; i++) {
-      if (i > 1) {
-        stars[i].style.visibility = "collapse";
-          }
-        }
-      }else if (counting > 10 ) {
-        for (i = 0; i < 3; i++) {
-          if (i > 0) {
-            stars[i].style.visibility = "collapse";
-          }
-        }
-      }
+if (counting > 5 && counting < 10) {
+  for (let i = 0; i < 3; i++) {
+    if (i > 1) {
+      stars[i].style.visibility = "collapse";
     }
+  }
+} else if (counting > 10) {
+  for (i = 0; i < 3; i++) {
+    if (i > 0) {
+      stars[i].style.visibility = "collapse";
+    }
+  }
+}
+
+
+//timer
+let min = 0;
+let sec = 0;
+
+function startTimer() {
+  setInterval(function() {
+    timer.innerHTML = min + " minutes " + sec + " seconds";
+    sec++;
+    if (sec >= 60) {
+      sec = 0;
+      min++;
+    }
+  }, 1000);
+}
+
 
 //FLips card on click
 for (let x = 0; x < myCards.length; x++) {
@@ -119,8 +139,11 @@ for (let x = 0; x < myCards.length; x++) {
 }
 
 //Restarts game when the restart icon is clicked
-restart.addEventListener("click", function(){
+restart.addEventListener("click", function() {
   startGame();
   counting = 0;
   moves.innerHTML = counting;
+  min = 0;
+  sec = 0;
+  startTimer;
 });
