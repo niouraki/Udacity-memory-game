@@ -96,22 +96,18 @@ function countMoves() {
   counting++;
   moves.innerHTML = counting;
 
-  if (counting === 1) {
-    startTimer();
-  }
-}
-
-//Removes stars after a number of moves
-if (counting > 5 && counting < 10) {
-  for (let i = 0; i < 3; i++) {
-    if (i > 1) {
-      stars[i].style.visibility = "collapse";
+  //Removes stars after a number of moves
+  if (counting > 5 && counting < 10) {
+    for (let i = 0; i < 3; i++) {
+      if (i > 1) {
+        stars[i].style.visibility = "collapse";
+      }
     }
-  }
-} else if (counting > 10) {
-  for (i = 0; i < 3; i++) {
-    if (i > 0) {
-      stars[i].style.visibility = "collapse";
+  } else if (counting > 10) {
+    for (i = 0; i < 3; i++) {
+      if (i > 0) {
+        stars[i].style.visibility = "collapse";
+      }
     }
   }
 }
@@ -121,16 +117,29 @@ if (counting > 5 && counting < 10) {
 let min = 0;
 let sec = 0;
 
-function startTimer() {
-  setInterval(function() {
+function myTimer() {
+  if (counting) {
     timer.innerHTML = min + " minutes " + sec + " seconds";
     sec++;
     if (sec >= 60) {
       sec = 0;
       min++;
     }
-  }, 1000);
+  }
 }
+
+function endGame() {
+  if (matchList.length == 16) {
+    clearInterval(startTimer);
+  }
+}
+
+
+//Starts timer
+let startTimer = setInterval(function() {
+  myTimer()
+}, 1000);
+
 
 
 //FLips card on click
