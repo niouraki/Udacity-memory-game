@@ -97,13 +97,13 @@ function countMoves() {
   moves.innerHTML = counting;
 
   //Removes stars after a number of moves
-  if (counting > 5 && counting < 10) {
+  if (counting > 15 && counting < 20) {
     for (let i = 0; i < 3; i++) {
       if (i > 1) {
         stars[i].style.visibility = "collapse";
       }
     }
-  } else if (counting > 10) {
+  } else if (counting > 20) {
     for (i = 0; i < 3; i++) {
       if (i > 0) {
         stars[i].style.visibility = "collapse";
