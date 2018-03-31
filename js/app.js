@@ -59,6 +59,10 @@ let openedCard = function() {
   openList.push(this);
   if (openList.length === 2) {
     countMoves();
+    stopClick();
+    setTimeout (function() {
+      startClick();
+    }, 900)
     if (openList[0].innerHTML === openList[1].innerHTML) {
       matchedCards();
     } else if (openList[0].innerHTML != openList[1].innerHTML) {
@@ -89,6 +93,20 @@ function noMatch() {
   setTimeout(function() {
     openList.splice(0, 2);
   }, 1100);
+}
+
+//Disables click event on cards
+function stopClick() {
+  for (let x = 0; x < myCards.length; x++) {
+    myCards[x].classList.add("stop-event");
+  }
+}
+
+//Enables click event on cards
+function startClick() {
+  for (let x = 0; x < myCards.length; x++) {
+    myCards[x].classList.remove("stop-event");
+  }
 }
 
 //Counts player's moves and starts timer
