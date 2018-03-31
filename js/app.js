@@ -128,18 +128,14 @@ function myTimer() {
   }
 }
 
-function endGame() {
-  if (matchList.length == 16) {
+
+//Starts and stops timer timer
+let startTimer = setInterval(function() {
+  myTimer();
+  if (matchList.length === 16) {
     clearInterval(startTimer);
   }
-}
-
-
-//Starts timer
-let startTimer = setInterval(function() {
-  myTimer()
 }, 1000);
-
 
 
 //FLips card on click
@@ -152,6 +148,9 @@ restart.addEventListener("click", function() {
   startGame();
   counting = 0;
   moves.innerHTML = counting;
+  for (i = 0; i < stars.length; i++) {
+    stars[i].style.visibility = "visible";
+  }
   min = 0;
   sec = 0;
   startTimer;
