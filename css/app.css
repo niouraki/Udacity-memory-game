@@ -119,3 +119,34 @@ h1 {
 #timer {
   text-align: center;
 }
+
+/*
+ * Styles for the Score Panel
+ */
+
+.modal {
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   visibility: hidden;
+ }
+
+.modal-style {
+  background-color: #eaf2e3;
+  text-align: center;
+  border: 1px solid #7798ab;
+  border-radius: 5px;
+  width: 50%;
+  margin: 15% auto;
+  padding: 10px;
+  font-size: 17px;
+}
+
+.play-again {
+  background-color: #7798ab;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 17px;
+}

@@ -15,6 +15,8 @@ let counting = 0;
 
 let timer = document.querySelector("#timer");
 
+let button = document.querySelector(".play-again");
+
 //Array for opened cards
 let openList = [];
 
@@ -47,7 +49,9 @@ function startGame() {
     });
     shuffled[i].classList.remove("open", "show", "match", "no_match");
   }
+  matchList.splice(0, 16);
   counting = 0;
+  moves.innerHTML = counting;
 }
 
 document.onload = startGame();
@@ -147,25 +151,53 @@ function myTimer() {
 }
 
 
-//Starts and stops timer timer
+//Starts timer
 let startTimer = setInterval(function() {
   myTimer();
-  if (matchList.length === 16) {
-    clearInterval(startTimer);
-  }
 }, 1000);
 
+//Creates the modal
+let modalAppear = function() {
+   if(matchList.length == 16) {
+     clearInterval(startTimer);
+
+     let timing = timer.innerHTML;
+     let starNumber = document.querySelector(".stars").innerHTML;
+
+      document.getElementById("modal-popup").style.visibility = "visible";
+      document.querySelector(".total-moves").innerHTML = counting;
+      document.querySelector(".total-time").innerHTML = timing;
+      document.querySelector(".total-stars").innerHTML = starNumber;
+
+      closeModal();
+    };
+}
+
+//Closes the modal when the button is clicked
+function closeModal() {
+button.addEventListener("click", function() {
+  document.getElementById("modal-popup").style.visibility = "hidden";
+  startGame();
+  for (i = 0; i < stars.length; i++) {
+    stars[i].style.visibility = "visible";
+  }
+  min = 0;
+  sec = 0;
+  setInterval(function() {
+    myTimer();
+  }, 1000);
+});
+}
 
 //FLips card on click
 for (let x = 0; x < myCards.length; x++) {
   myCards[x].addEventListener("click", openedCard);
+  myCards[x].addEventListener("click", modalAppear);
 }
 
 //Restarts game when the restart icon is clicked
 restart.addEventListener("click", function() {
   startGame();
-  counting = 0;
-  moves.innerHTML = counting;
   for (i = 0; i < stars.length; i++) {
     stars[i].style.visibility = "visible";
   }
