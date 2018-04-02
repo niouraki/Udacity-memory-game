@@ -3,6 +3,7 @@ let myCard = document.getElementsByClassName("card");
 let myCards = [...myCard];
 console.log(myCards);
 
+//Get elements from html
 let deck = document.querySelector(".deck");
 
 let restart = document.querySelector(".restart");
@@ -64,7 +65,7 @@ let openedCard = function() {
   if (openList.length === 2) {
     countMoves();
     stopClick();
-    setTimeout (function() {
+    setTimeout(function() {
       startClick();
     }, 900)
     if (openList[0].innerHTML === openList[1].innerHTML) {
@@ -158,35 +159,35 @@ let startTimer = setInterval(function() {
 
 //Creates the modal
 let modalAppear = function() {
-   if(matchList.length == 16) {
-     clearInterval(startTimer);
+  if (matchList.length == 16) {
+    clearInterval(startTimer);
 
-     let timing = timer.innerHTML;
-     let starNumber = document.querySelector(".stars").innerHTML;
+    let timing = timer.innerHTML;
+    let starNumber = document.querySelector(".stars").innerHTML;
 
-      document.getElementById("modal-popup").style.visibility = "visible";
-      document.querySelector(".total-moves").innerHTML = counting;
-      document.querySelector(".total-time").innerHTML = timing;
-      document.querySelector(".total-stars").innerHTML = starNumber;
+    document.getElementById("modal-popup").style.visibility = "visible";
+    document.querySelector(".total-moves").innerHTML = counting;
+    document.querySelector(".total-time").innerHTML = timing;
+    document.querySelector(".total-stars").innerHTML = starNumber;
 
-      closeModal();
-    };
+    closeModal();
+  };
 }
 
 //Closes the modal when the button is clicked
 function closeModal() {
-button.addEventListener("click", function() {
-  document.getElementById("modal-popup").style.visibility = "hidden";
-  startGame();
-  for (i = 0; i < stars.length; i++) {
-    stars[i].style.visibility = "visible";
-  }
-  min = 0;
-  sec = 0;
-  setInterval(function() {
-    myTimer();
-  }, 1000);
-});
+  button.addEventListener("click", function() {
+    document.getElementById("modal-popup").style.visibility = "hidden";
+    startGame();
+    for (i = 0; i < stars.length; i++) {
+      stars[i].style.visibility = "visible";
+    }
+    min = 0;
+    sec = 0;
+    setInterval(function() {
+      myTimer();
+    }, 1000);
+  });
 }
 
 //FLips card on click

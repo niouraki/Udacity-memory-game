@@ -134,13 +134,13 @@ h1 {
  */
 
 .modal {
-   position: fixed;
-   top: 0;
-   bottom: 0;
-   left: 0;
-   right: 0;
-   visibility: hidden;
- }
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  visibility: hidden;
+}
 
 .modal-style {
   background-color: #eaf2e3;
@@ -176,7 +176,7 @@ h1 {
     font-size: 16px;
   }
 
-  .score-panel{
+  .score-panel {
     width: 280px;
   }
 
@@ -294,7 +294,7 @@ h1 {
     padding: 10px;
     font-size: 18px;
   }
-
+  
   .play-again {
     font-size: 18px;
   }
