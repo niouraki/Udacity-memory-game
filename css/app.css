@@ -169,7 +169,7 @@ h1 {
 
 @media screen and (max-width: 360px) {
   h1 {
-    font-size: 23px;
+    font-size: 22px;
   }
 
   .score-panel .stars li, .restart, #timer, .moves-style {
@@ -177,17 +177,17 @@ h1 {
   }
 
   .score-panel {
-    width: 280px;
+    width: 260px;
   }
 
   .deck {
-    width: 325px;
-    height: 390px;
+    width: 300px;
+    height: 320px;
   }
 
   .deck .card {
-    height: 50px;
-    width: 55px;
+    height: 45px;
+    width: 50px;
   }
 
   .deck .card.show {
@@ -294,7 +294,7 @@ h1 {
     padding: 10px;
     font-size: 18px;
   }
-  
+
   .play-again {
     font-size: 18px;
   }
