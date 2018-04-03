@@ -43,11 +43,15 @@ function shuffle(array) {
 //Shuffles cards and starts game
 function startGame() {
   let shuffled = shuffle(myCards);
+
+  //Appends cards to the deck
+  let appending = function(item) {
+    deck.appendChild(item);
+  };
+
   for (let i = 0; i < shuffled.length; i++) {
     deck.innerHTML = "";
-    [].forEach.call(shuffled, function(item) {
-      deck.appendChild(item);
-    });
+    [].forEach.call(shuffled, appending);
     shuffled[i].classList.remove("open", "show", "match", "no_match");
   }
   matchList.splice(0, 16);
@@ -56,7 +60,6 @@ function startGame() {
 }
 
 document.onload = startGame();
-
 
 //Flips card clicked
 let openedCard = function() {
@@ -67,14 +70,14 @@ let openedCard = function() {
     stopClick();
     setTimeout(function() {
       startClick();
-    }, 900)
+    }, 900);
     if (openList[0].innerHTML === openList[1].innerHTML) {
       matchedCards();
     } else if (openList[0].innerHTML != openList[1].innerHTML) {
       noMatch();
     }
   }
-}
+};
 
 //Specifies what to do when cards match
 function matchedCards() {
@@ -127,7 +130,7 @@ function countMoves() {
       }
     }
   } else if (counting > 20) {
-    for (i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
       if (i > 0) {
         stars[i].style.visibility = "collapse";
       }
@@ -151,8 +154,7 @@ function myTimer() {
   }
 }
 
-
-//Starts timer
+//Starts the timer
 let startTimer = setInterval(function() {
   myTimer();
 }, 1000);
@@ -165,23 +167,24 @@ let modalAppear = function() {
     let timing = timer.innerHTML;
     let starNumber = document.querySelector(".stars").innerHTML;
 
-    document.getElementById("modal-popup").style.visibility = "visible";
+    document.getElementById("modal-popup").style.display = "block";
     document.querySelector(".total-moves").innerHTML = counting;
     document.querySelector(".total-time").innerHTML = timing;
     document.querySelector(".total-stars").innerHTML = starNumber;
 
     closeModal();
-  };
-}
+  }
+};
 
 //Closes the modal when the button is clicked
 function closeModal() {
   button.addEventListener("click", function() {
-    document.getElementById("modal-popup").style.visibility = "hidden";
+    document.getElementById("modal-popup").style.display = "none";
     startGame();
-    for (i = 0; i < stars.length; i++) {
+    for (let i = 0; i < stars.length; i++) {
       stars[i].style.visibility = "visible";
     }
+
     min = 0;
     sec = 0;
     setInterval(function() {
@@ -199,10 +202,9 @@ for (let x = 0; x < myCards.length; x++) {
 //Restarts game when the restart icon is clicked
 restart.addEventListener("click", function() {
   startGame();
-  for (i = 0; i < stars.length; i++) {
+  for (let i = 0; i < stars.length; i++) {
     stars[i].style.visibility = "visible";
   }
   min = 0;
   sec = 0;
-  startTimer;
 });
